@@ -6,5 +6,5 @@ class ItemSchema(Schema):
         ordered = True
 
     item_id = fields.Int(dump_only=True)
-    name = fields.String(dump_only=True)
-    price = fields.Float(dump_only=True)
+    name = fields.String()
+    price = fields.Float()
