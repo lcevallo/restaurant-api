@@ -1,0 +1,9 @@
+Flask~=1.1.2
+Flask-RESTful==0.3.8
+Flask-Cors==3.0.10
+PyMySQL~=1.0.0
+Flask-SQLAlchemy==2.5.1
+Flask-Migrate==2.5.2
+passlib==1.7.1
+marshmallow==2.19.5
+Flask-Cors==3.0.10
