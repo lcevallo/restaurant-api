@@ -18,3 +18,6 @@ flask db migrate
 
 # which will upgrade our database to conform with the latest specification in our models
 flask db upgrade
+
+
+https://stackoverflow.com/questions/16433338/inserting-new-records-with-one-to-many-relationship-in-sqlalchemy

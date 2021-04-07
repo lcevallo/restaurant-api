@@ -19,4 +19,4 @@ class CustomerListResource(Resource):
         #     data.append(customer.data())
 
         # return {'data': data}, HTTPStatus.OK
-        return customer_list_schema.dump(customers), HTTPStatus.OK
+        return customer_list_schema.dump(customers).data, HTTPStatus.OK

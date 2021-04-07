@@ -13,15 +13,15 @@ class Order(db.Model):
     customer_id = db.Column(db.BigInteger, db.ForeignKey("customer.customer_id"))
     
     # Relationships
-    order_items = db.relationship('OrderItem', backref='order', lazy='dynamic')
+    order_items = db.relationship('OrderItem', backref='order')
 
     @classmethod
     def get_all(cls):
         return cls.query.all()
     
     @classmethod
-    def get_by_id(cls, order_id):
-        return cls.query.filter_by(order_id=order_id).first()
+    def get_by_id(cls, id):
+        return cls.query.filter_by(order_id=id).first()
     
     def save(self):
         db.session.add(self)
