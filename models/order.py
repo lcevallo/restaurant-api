@@ -11,7 +11,22 @@ class Order(db.Model):
     g_total = db.Column(db.Numeric(asdecimal=True, precision=18, scale=2), nullable=False)
 
     customer_id = db.Column(db.BigInteger, db.ForeignKey("customer.customer_id"))
+    
+    # Relationships
+    order_items = db.relationship('OrderItem', backref='order', lazy='dynamic')
 
     @classmethod
     def get_all(cls):
         return cls.query.all()
+    
+    @classmethod
+    def get_by_id(cls, order_id):
+        return cls.query.filter_by(order_id=order_id).first()
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
