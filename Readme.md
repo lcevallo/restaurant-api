@@ -21,3 +21,18 @@ flask db upgrade
 
 
 https://stackoverflow.com/questions/16433338/inserting-new-records-with-one-to-many-relationship-in-sqlalchemy
+
+
+https://github.com/TrainingByPackt/Python-API-Development-Fundamentals/blob/master/Lesson05/Exercise37/smilecook/resources/recipe.py
+
+https://github.com/TrainingByPackt/Python-API-Development-Fundamentals/blob/master/Lesson05/Exercise37/smilecook/resources/user.py
+
+https://github.com/TrainingByPackt/Python-API-Development-Fundamentals/blob/master/Lesson05/Exercise37/smilecook/schemas/recipe.py
+
+https://github.com/TrainingByPackt/Python-API-Development-Fundamentals/blob/master/Lesson05/Exercise37/smilecook/schemas/user.py
+
+https://github.com/TrainingByPackt/Python-API-Development-Fundamentals/blob/master/Lesson05/Exercise37/smilecook/models/user.py
+
+https://github.com/TrainingByPackt/Python-API-Development-Fundamentals/blob/master/Lesson05/Exercise37/smilecook/models/recipe.py
+
+https://github.com/TrainingByPackt/Python-API-Development-Fundamentals/blob/master/Lesson05/Exercise37/smilecook/app.py

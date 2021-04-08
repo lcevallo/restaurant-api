@@ -11,9 +11,16 @@ class OrderItem(db.Model):
     item_id = db.Column(db.BigInteger, db.ForeignKey("item.item_id"))
     quantity = db.Column(db.Integer, nullable=True)
 
+    # Relationships
+    item = db.relationship('Item', backref='order_items')
+
     @classmethod
     def get_all(cls):
         return cls.query.all()
+
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.filter_by(order_item_id=id).first()
 
     def save(self):
         db.session.add(self)
