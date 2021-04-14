@@ -32,8 +32,8 @@ class OrderListResource(Resource):
         if data.get('order_id') != 0:
             order = Order.get_by_id(id=data.get('order_id'))
             order.order_no = data.get('order_no') or order.order_no
-            order.p_method = data.get('description') or order.description
-            order.g_total = data.get('num_of_servings') or order.num_of_servings
+            order.p_method = data.get('p_method') or order.p_method
+            order.g_total = data.get('g_total') or order.g_total
             order.customer_id = data.get('customer_id') or order.customer_id
         else:
             order = Order(**data)
@@ -43,24 +43,33 @@ class OrderListResource(Resource):
 
         order.save()
 
+        ids_borrar = deleted_order_items_id.split(',')
+        for id_order_item in ids_borrar:
+            if id_order_item != '':
+                order_item = OrderItem.get_by_id(id=int(id_order_item))
+                order_item.delete()
+
         if order.order_id:
             for item in order_items_json:
-                data_order_item, errors_order_item = order_item_schema.load(data=item)
+                if not item['order_item_id']:
+                    item['order_item_id'] = 0
+                data, errors = order_item_schema.load(data=item)
                 if errors:
                     return {'message': 'Validation Order Items Errors',
-                            'errors': errors_order_item}, HTTPStatus.BAD_REQUEST
+                            'errors': errors}, HTTPStatus.BAD_REQUEST
 
-                if data_order_item.get('order_item_id') != 0:
-                    order_item = OrderItem.get_by_id(id=data_order_item.get('order_item_id'))
-                    order_item.order_id = data.get('order_no') or order_item.order_no
-                    order_item.item_id = data.get('description') or order_item.description
-                    order_item.quantity = data.get('num_of_servings') or order_item.num_of_servings
+                if data.get('order_item_id') !=0:
+                    order_item = OrderItem.get_by_id(id=data.get('order_item_id'))
+                    order_item.order_id = data.get('order_id') or order_item.order_id
+                    order_item.item_id = data.get('item_id') or order_item.item_id
+                    order_item.quantity = data.get('quantity') or order_item.quantity
+                    order_item.save()
 
                 else:
-                    order_item = OrderItem(**data_order_item)
+                    order_item = OrderItem(**data)
                     order_item.order_id = order.order_id
+                    order_item.save()
 
-                order_item.save()
 
             # Delete operations for orders_items
 

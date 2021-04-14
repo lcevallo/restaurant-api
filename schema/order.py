@@ -6,7 +6,7 @@ class OrderSchema(Schema):
     class Meta:
         ordered = True
 
-    order_id = fields.Integer(dump_only=True)
+    order_id = fields.Integer()
     order_no = fields.String()
     p_method = fields.String()
     g_total = fields.Float()
